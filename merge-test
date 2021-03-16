@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function merge-test() {
+  git merge $1 --no-commit --no-ff &> /dev/null
+
+  result=$?
+
+  if [[ $result -eq 0 ]]; then
+    echo "Can merge"
+    git merge --abort
+  else
+    echo "Cannot merge $1 because of conflicts"
+    git merge --abort
+    exit 1
+  fi
+}
+
+merge-test $*
