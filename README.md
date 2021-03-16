@@ -2,4 +2,11 @@ This is a dumb repo to explore automated ways to check if a branch can be merged
 
 There are great suggestions in the answers to [this StackOverflow question](https://stackoverflow.com/questions/501407/is-there-a-git-merge-dry-run-option).
 
-This is a new line that other branches will also touch, so we can test merge conflicts.
+So far, the best solution I found is to check if the merge can be done without conflicts using `--no-commit` and `--no-ff`.
+
+```
+git merge $BRANCH_TO_MERGE --no-commit --no-ff &> /dev/null \
+  && echo "Can merge" \
+  || echo "Cannot merge because of conflicts" \
+  ; git merge --abort
+```
