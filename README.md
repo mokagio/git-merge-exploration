@@ -19,3 +19,5 @@ To test this approach:
 - `git fetch origin`
 - Run `./merge-test origin/branch-that-creates-merge-conflicts`
 - Run `./merge-test origin/branch-that-does-not-create-merge-conflicts`
+
+This new line won't create a merge conflict (against `8249c9e`).
